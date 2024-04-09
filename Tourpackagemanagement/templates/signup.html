@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .form-control {
+    width: 70%;
+  }
+
+  .register-container {
+    padding: 20px;
+  }
+
+  .register-card {
+    background-color: #1A1A1D;
+    width: 40%;
+    box-shadow: 0 0px 8px yellowgreen;
+    color: white;
+    border-radius: 15px;
+    border: 2px solid yellowgreen;
+  }
+
+  .required-label::after {
+    content: "*";
+    color: red;
+    margin-left: 5px;
+  }
+</style>
+
+<div class="container register-container" style="margin-bottom: 100px;">
+  <center>
+    <form method="POST" id="signup-form">
+      {% csrf_token %}
+      <div class="register-card">
+        <h3 class="mt-4">Sign up</h3>
+        <div class="mb-3">
+          <label class="form-label required-label">Name</label>
+          <input type="text" class="form-control" name="fn" placeholder="Enter your name" required>
+
+        </div>
+        <div class="mb-3">
+          <label class="form-label required-label">Phone Number</label>
+          <input type="tel" class="form-control" name="ph" placeholder="Enter your phone number" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label required-label">Username</label>
+          <input type="text" class="form-control" name="u" placeholder="Enter the username" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label required-label">Password</label>
+          <input type="password" class="form-control" name="p" placeholder="Enter password" required>
+        </div>
+        <div class="mb-3">
+          <input class="form-check-input me-2" type="checkbox" required>
+          <label class="form-check-label">
+            I agree to all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </div>
+    </form>
+  </center>
+</div>
+
+
+
+{% endblock %}

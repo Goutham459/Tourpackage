@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+</style>
+
+
+<div class="container-fluid my-5 text-light">
+    <div class="row justify-content-center my-2">
+        <div class="col-6">
+            {% if package.image %}
+            <img class="img-fluid" height="500px" width="600px;" style="box-shadow: 0 0px 8px #211f1f;" src="{{package.image.url}}">
+            {% endif %}
+        </div>
+        <div class="col-5" style="color:white;">
+            <p class="display-2 my-2">{{package.name}}</p>
+            <p class="lead">{{package.desc}}</p>
+        </div>
+    </div>
+</div>
+<div>
+    <h3 style="text-align:center; ">Package details</h3>
+<div style="padding:50px; display: flex; justify-content: center;">
+    <img class="img-fluid" height="300px" width="400px" style="box-shadow: 0 0px 8px #211f1f; margin: 0 15px;" src="{{ package.image1.url }}">
+    <img class="img-fluid" height="300px" width="400px" style="box-shadow: 0 0px 8px #211f1f; margin: 0 15px;" src="{{ package.image2.url }}">
+    <img class="img-fluid" height="300px" width="400px" style="box-shadow: 0 0px 8px #211f1f; margin: 0 15px;" src="{{ package.image3.url }}">
+</div>
+
+    <div>
+        <p class="text-danger" style="margin-top:50px; line-height:2;">
+                Full Package with Food and Accomadation<br>
+                Price May vary based on package customisations</p>
+    </div>
+    <a style="margin-top:30px;" href="" class="btn btn-secondary" >Download package</a>
+</div>
+
+
+
+{% endblock %}

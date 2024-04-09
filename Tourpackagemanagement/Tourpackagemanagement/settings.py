@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u@vpw+i#n6e!%(2(qg^9&r%+3hpfxfbl9hq$m8f#@atd=d7auc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -68,6 +68,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Tourpackagemanagement.wsgi.application'
+
+
+TWILIO_ACCOUNT_SID = 'US3ac2e5d22521159768ca3b99d4f22839'
+TWILIO_AUTH_TOKEN = 'C4GLESBWPMRDDP5EH3TAQ4Z6'
+TWILIO_PHONE_NUMBER = '+919778121710'
 
 
 # Database

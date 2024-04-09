@@ -4,3 +4,65 @@
     font-weight: bold;
     font-style: italic;
 }
+
+.navbar {
+    background-color: #1A1A1D !important;
+    margin-top: 25px; 
+    margin-right: 15px; 
+    margin-left: 15px; 
+    margin-bottom: 25px;
+    border-radius: 20px; 
+} 
+
+.nav-link{
+    color: white !important; 
+    padding: 10px !important;
+}
+
+footer {
+    color: white !important;
+}
+
+.carousel-item img{
+    height:600px;
+    width:96%;
+    margin-top: 25px;  
+    margin-left: 25px; 
+    margin-bottom: 25px;
+    border-radius: 20px;
+}
+
+.card img{
+    width: 250px;
+}
+
+.card:hover{
+    transform: translateY(-10px);
+}
+
+.card .btn{
+    box-shadow: 0 0px 8px #211f1f;
+    background-color: black;
+    color: white;
+}
+
+.card h5{
+    text-align:center;
+    font-weight:bold;
+    color:aliceblue;
+}
+
+.card p{
+    color:aliceblue
+}
+
+.gradient-custom-3 {
+background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+}
+
+.gradient-custom-4 {
+background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+}
+
+
