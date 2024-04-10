@@ -19,48 +19,61 @@
     border-radius: 15px;
     border: 2px solid yellowgreen;
   }
+ .input-group{
+    width:70%;
+    }
 
-  .required-label::after {
-    content: "*";
-    color: red;
-    margin-left: 5px;
-  }
 </style>
 
-<div class="container register-container" style="margin-bottom: 100px;">
+<form method="POST" id="signup-form">
+  {% csrf_token %}
   <center>
-    <form method="POST" id="signup-form">
-      {% csrf_token %}
-      <div class="register-card">
-        <h3 class="mt-4">Sign up</h3>
-        <div class="mb-3">
-          <label class="form-label required-label">Name</label>
-          <input type="text" class="form-control" name="fn" placeholder="Enter your name" required>
+  <div class="register-card">
+    <h3 class="mt-4">Sign up</h3>
+    <div class="mb-4">
+       <div class="input-group">
+         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+         <input type="text" class="form-control" name="n" placeholder="Enter name">
+       </div>
+    </div>
 
+    <div class="mb-4">
+       <div class="input-group">
+         <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+         <input type="email" class="form-control" name="e" placeholder="Enter email">
+       </div>
+    </div>
+
+    <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+          <input type="text" class="form-control" name="u" placeholder="Enter your username">
         </div>
-        <div class="mb-3">
-          <label class="form-label required-label">Phone Number</label>
-          <input type="tel" class="form-control" name="ph" placeholder="Enter your phone number" required>
+    </div>
+
+    <div class="mb-4">
+       <div class="input-group">
+         <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+         <input type="password" class="form-control" name="n" placeholder="Enter password">
+       </div>
+    </div>
+
+    <div class="mb-3">
+      <input class="form-check-input me-2" type="checkbox" name="agree" required>
+      <label class="form-check-label">
+        I agree to all statements in <a href="#!" class="text-body"><u style="color:white;">Terms of service</u></a>
+      </label>
+    </div>
+      <div class="mb-4">
+          <span>existing user? </span>
+          <a href="{% url 'login' %}">login</a>
         </div>
-        <div class="mb-3">
-          <label class="form-label required-label">Username</label>
-          <input type="text" class="form-control" name="u" placeholder="Enter the username" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label required-label">Password</label>
-          <input type="password" class="form-control" name="p" placeholder="Enter password" required>
-        </div>
-        <div class="mb-3">
-          <input class="form-check-input me-2" type="checkbox" required>
-          <label class="form-check-label">
-            I agree to all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-          </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-      </div>
-    </form>
-  </center>
-</div>
+
+        <input type="submit" class="form-control" style="margin-bottom: 25px;" value="signup">
+  </div>
+    </center>
+</form>
+
 
 
 

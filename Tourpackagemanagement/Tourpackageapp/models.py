@@ -8,6 +8,7 @@ class Packager(models.Model):
 
     def __str__(self):
         return self.name
+
 class Bus(models.Model):
     name = models.CharField(max_length=20)
     desc = models.TextField()
@@ -17,8 +18,6 @@ class Bus(models.Model):
     location = models.CharField(max_length=20,null=True, blank=True)
     contact = models.CharField(max_length=20,null=True, blank=True)
     available = models.BooleanField(default=True)
-    packager = models.ForeignKey(Packager, on_delete=models.CASCADE, related_name='buses')
-
     def __str__(self):
         return self.name
 
@@ -41,12 +40,4 @@ class Package(models.Model):
 
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    otp = models.CharField(max_length=20)
-    verified = models.BooleanField(default=False)
-    phone_number = models.CharField(max_length=15)
-
-    def __str__(self):
-        return self.user.username
 
