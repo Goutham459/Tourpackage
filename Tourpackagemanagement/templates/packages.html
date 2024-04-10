@@ -13,12 +13,19 @@
     background-color: transparent;
     box-shadow: 0 0px 8px yellowgreen;
     transition: transform 0.5s ease-in-out;
-    position: relative; /* Add position relative to the card */
+    position: relative;
+    overflow: hidden;
   }
   .card img{
     width: 350px;
     height: 350px;
+    transition: transform 0.5s ease-in-out;
   }
+
+  .card:hover img {
+    transform: scale(1.1); /* Zoom in image on hover */
+  }
+
   .card-body {
     position: absolute;
     bottom: 0;
@@ -28,7 +35,7 @@
     background-color: rgba(0, 0, 0, 0.7); /* Adjust background color and opacity */
     color: white; /* Adjust text color */
     transition: opacity 0.3s ease; /* Add transition effect */
-    opacity: 0; /* Initially hide the card body */
+    opacity: 0;
   }
   .card:hover .card-body {
     opacity: 1; /* Show the card body when the card is hovered */

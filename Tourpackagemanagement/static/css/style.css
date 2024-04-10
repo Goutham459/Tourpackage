@@ -35,9 +35,6 @@ footer {
     width: 250px;
 }
 
-.card:hover{
-    transform: translateY(-10px);
-}
 
 .card .btn{
     box-shadow: 0 0px 8px #211f1f;
