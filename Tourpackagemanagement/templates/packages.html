@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .card {
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 100px;
+    height:350px;
+    width: 350px;
+    border: 0;
+    background-color: transparent;
+    box-shadow: 0 0px 8px yellowgreen;
+    transition: transform 0.5s ease-in-out;
+    position: relative; /* Add position relative to the card */
+  }
+  .card img{
+    width: 350px;
+    height: 350px;
+  }
+  .card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust background color and opacity */
+    color: white; /* Adjust text color */
+    transition: opacity 0.3s ease; /* Add transition effect */
+    opacity: 0; /* Initially hide the card body */
+  }
+  .card:hover .card-body {
+    opacity: 1; /* Show the card body when the card is hovered */
+  }
+  .btn {
+    display: block;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    color: yellowgreen;
+    border: none;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn:hover {
+    background-color: yellowgreen;
+    color: black;
+  }
+</style>
+
+<div class="container-fluid">
+    <h1 style="text-align:center;">Our Packages</h1>
+</div>
+{% for i in packages %}
+    <div class="card">
+        {% if i.image %}
+            <img src="{{ i.image.url }}" class="card-img-top">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title" style="height:70px;">{{ i.place }}</h5>
+            <a href="{% url 'packagedetails' i.pk %}" class="btn">View Details</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
