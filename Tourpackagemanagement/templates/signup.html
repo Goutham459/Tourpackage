@@ -24,11 +24,19 @@
   }
 </style>
 
-<form method="POST" id="signup-form">
-  {% csrf_token %}
-  <center>
-    <div class="register-card">
-      <h3 class="mt-4">Sign up</h3>
+<center>
+  <div class="register-card">
+    <h3 class="mt-4">Sign up</h3>
+    <!-- Add this block to display messages -->
+    {% if messages %}
+    <div class="mb-4">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="POST" id="signup-form">
+      {% csrf_token %}
       <div class="mb-4">
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
@@ -69,8 +77,8 @@
       </div>
 
       <input type="submit" class="form-control" style="margin-bottom: 25px;" value="Sign up">
-    </div>
-  </center>
-</form>
+    </form>
+  </div>
+</center>
 
 {% endblock %}

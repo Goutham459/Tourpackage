@@ -91,6 +91,11 @@ def signup(request):
             messages.error(request, 'All fields are required.')
             return redirect('signup')
 
+        # Check if username or email already exists
+        if User.objects.filter(username=u).exists() and User.objects.filter(email=e).exists():
+            messages.error(request, 'Username and Email are already taken.')
+            return redirect('signup')
+
         if User.objects.filter(username=u).exists():
             messages.error(request, 'Username is already taken.')
             return redirect('signup')
@@ -99,6 +104,7 @@ def signup(request):
             messages.error(request, 'Email is already registered.')
             return redirect('signup')
 
+        # Create the user
         user = User.objects.create_user(username=u, email=e, password=p, first_name=n)
         messages.success(request, 'Account created successfully. You can now login.')
         return redirect('login')
