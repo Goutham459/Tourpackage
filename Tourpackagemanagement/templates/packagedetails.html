@@ -32,7 +32,12 @@
                 Full Package with Food and Accomadation<br>
                 Price May vary based on package customisations</p>
     </div>
+    {% if user.is_authenticated %}
     <a style="margin-top:30px;" href="" class="btn btn-secondary" >Download package</a>
+    {% else %}
+    {% endif %}
+
+
 </div>
 
 
