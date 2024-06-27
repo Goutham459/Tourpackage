@@ -23,11 +23,13 @@ from Tourpackagemanagement import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name="home"),
+    path('packagers/', views.packagers, name='packagers'), 
     path('packages/<str:name>/', views.packages, name="packages"),
     path('packagedetails/<int:pk>/', views.packagedetails, name='packagedetails'),
     path('bus/',views.bus,name='bus'),
     path('signup/', views.signup, name='signup'),
     path('login/',views.login,name="login"),
+    path('logout/', views.signout, name='logout'),
     path('enquiry/',views.enquiry,name="enquiry")
 ]
 

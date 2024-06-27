@@ -12,81 +12,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=REM:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-
     <style>
-html {
-    scroll-behavior: smooth;
-}
-.navbar-nav .nav-link {
-    position: relative;
-    color: white;
-    font-size: 13px;
-    text-decoration: none;
-    margin-right: 20px;
-    transition: border-bottom-color 0.5s ease-in-out;
-}
-
-.navbar-nav .nav-link::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: transparent;
-    transition: width 0.5s ease-in-out;
-}
-
-.navbar-nav .nav-link:hover::after {
-    width: 100%;
-    background-color: yellowgreen;
-}
-
-</style>
+        html {
+            scroll-behavior: smooth;
+        }
+        img {
+          max-width: 100%;
+          height: auto;
+      }
+      
+        .navbar-nav .nav-link, .nav-item.dropdown .nav-link, .dropdown-menu .dropdown-item {
+            position: relative;
+            color: white;
+            font-size: 13px;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: border-bottom-color 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+        .navbar-nav .nav-link::after, .nav-item.dropdown .nav-link::after, .dropdown-menu .dropdown-item::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: transparent;
+            transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover::after, .nav-item.dropdown .nav-link:hover::after, .dropdown-menu .dropdown-item:hover::after {
+            width: 100%;
+            background-color: yellowgreen;
+        }
+        .navbar-nav .nav-link:hover, .nav-item.dropdown .nav-link:hover, .dropdown-menu .dropdown-item:hover {
+            color: yellowgreen !important; 
+        }
+        .dropdown-menu {
+          background-color: #1A1A1D;
+      }
+      .dropdown-item {
+          color: white;
+      }
+      .dropdown-item:hover {
+          background-color: #1A1A1D;
+          color: #1A1A1D;
+      }
+      .nav-item.dropdown {
+        margin-left: 850px !important;
+    }
+    
+     
+    </style>
 </head>
 <body class="oxanium-body" style="background-color: #1A1A1D;color: #FFFFFF;">
-        <!--    NAVBAR     -->
 
-<nav class="navbar navbar-expand-lg ">
-  <div class="container-fluid">
+<!--    NAVBAR     -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
 
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-        <a class="nav-link" href="">Packages</a>
-        <a class="nav-link" href="{% url 'bus' %}">Buses</a>
-        <a class="nav-link" href="#">Contact</a>
-        <a class="nav-link" href="#footer">About</a>
-        <a class="nav-link" href="{% url 'signup' %}">Signup</a>
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
-        <a style="margin-left:100%;" class="nav-link" href="{% url 'enquiry' %}">Enquiry</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" href="#footer">About</a>
+                
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'packagers' %}">Packages</a>
+                <a class="nav-link" href="{% url 'bus' %}">Buses</a>
+                <a style="margin-left:auto;" class="nav-link" href="{% url 'enquiry' %}">Enquiry</a>
+                <div class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user"></i> {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                
 
-      </div>
+                {% else %}
+                    <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
-
-
 
 {% block content %}
 
 {% endblock %}
 
-
 <div class="container" id="footer">
-  <footer class="py-3 my-4" >
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 ">Home</a></li>
-      <li class="nav-item"><a href="" class="nav-link px-2 ">Packagers</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 ">Contact</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 ">About</a></li>
-    </ul>
-    <p class="nav-item text-center" style="color:white;">© 2024 EploreMate pvt.ltd , Inc</p>
-  </footer>
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2">About</a></li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'packagers' %}" class="nav-link px-2">Packages</a></li>
+            <li class="nav-item"><a href="{% url 'bus' %}" class="nav-link px-2">Buses</a></li>
+            <li class="nav-item"><a href="{% url 'enquiry' %}" class="nav-link px-2">Enquiry</a></li>
+
+            {% else %}
+            <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link px-2">Signup</a></li>
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2">Login</a></li>
+
+            {% endif %}
+
+
+
+
+        </ul>
+        <p class="nav-item text-center" style="color:white;">© 2024 ExploreMate Pvt. Ltd., Inc</p>
+    </footer>
 </div>
 
 </body>

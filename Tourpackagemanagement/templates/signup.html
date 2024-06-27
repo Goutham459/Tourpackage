@@ -14,67 +14,63 @@
   .register-card {
     background-color: #1A1A1D;
     width: 40%;
-    box-shadow: 0 0px 8px yellowgreen;
+    box-shadow: 0 0px 8px white;
     color: white;
     border-radius: 15px;
-    border: 2px solid yellowgreen;
+    border: 2px solid white;
   }
- .input-group{
-    width:70%;
-    }
-
+  .input-group {
+    width: 70%;
+  }
 </style>
 
 <form method="POST" id="signup-form">
   {% csrf_token %}
   <center>
-  <div class="register-card">
-    <h3 class="mt-4">Sign up</h3>
-    <div class="mb-4">
-       <div class="input-group">
-         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-         <input type="text" class="form-control" name="n" placeholder="Enter name">
-       </div>
-    </div>
-
-    <div class="mb-4">
-       <div class="input-group">
-         <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-         <input type="email" class="form-control" name="e" placeholder="Enter email">
-       </div>
-    </div>
-
-    <div class="mb-4">
+    <div class="register-card">
+      <h3 class="mt-4">Sign up</h3>
+      <div class="mb-4">
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-          <input type="text" class="form-control" name="u" placeholder="Enter your username">
+          <input type="text" class="form-control" name="n" placeholder="Enter name" required>
         </div>
-    </div>
+      </div>
 
-    <div class="mb-4">
-       <div class="input-group">
-         <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-         <input type="password" class="form-control" name="n" placeholder="Enter password">
-       </div>
-    </div>
-
-    <div class="mb-3">
-      <input class="form-check-input me-2" type="checkbox" name="agree" required>
-      <label class="form-check-label">
-        I agree to all statements in <a href="#!" class="text-body"><u style="color:white;">Terms of service</u></a>
-      </label>
-    </div>
       <div class="mb-4">
-          <span>existing user? </span>
-          <a href="{% url 'login' %}">login</a>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+          <input type="email" class="form-control" name="e" placeholder="Enter email" required>
         </div>
+      </div>
 
-        <input type="submit" class="form-control" style="margin-bottom: 25px;" value="signup">
-  </div>
-    </center>
+      <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+          <input type="text" class="form-control" name="u" placeholder="Enter your username" required>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" class="form-control" name="p" placeholder="Enter password" required>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <input class="form-check-input me-2" type="checkbox" name="agree" required>
+        <label class="form-check-label">
+          I agree to all statements in <a href="#!" class="text-body"><u style="color:white;">Terms of service</u></a>
+        </label>
+      </div>
+      <div class="mb-4">
+        <span>Existing user? </span>
+        <a href="{% url 'login' %}">Login</a>
+      </div>
+
+      <input type="submit" class="form-control" style="margin-bottom: 25px;" value="Sign up">
+    </div>
+  </center>
 </form>
-
-
-
 
 {% endblock %}
