@@ -33,7 +33,6 @@
       {% csrf_token %}
       <div class="login-card">
         <h3 class="mt-4">Login</h3>
-        <!-- Add this block to display messages -->
         {% if messages %}
         <div class="mb-4">
           {% for message in messages %}
@@ -59,6 +58,9 @@
         <div class="mb-4">
           <span>New user? </span>
           <a href="{% url 'signup' %}">Signup</a>
+        </div>
+        <div class="mb-4">
+          <a href="{% url 'password_reset_request' %}">Forgot Password?</a>
         </div>
 
         <input type="submit" class="form-control" style="margin-bottom: 25px;" value="Login">

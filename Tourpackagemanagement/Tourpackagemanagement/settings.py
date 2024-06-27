@@ -138,3 +138,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'gouthamkrishnacs1@gmail.com'
 EMAIL_HOST_PASSWORD = 'wjsh yqho fmwp pecc'
+DEFAULT_FROM_EMAIL = 'ExploreMate <noreply@exploremate.com>'

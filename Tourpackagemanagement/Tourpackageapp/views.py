@@ -13,6 +13,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.utils.crypto import get_random_string
 
 
 
@@ -115,5 +116,47 @@ def signup(request):
 def signout(request):
     logout(request)
     return redirect('home')
+
+otp_storage = {}
+
+def password_reset_request(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user = User.objects.filter(email=email).first()
+        if user:
+            otp = get_random_string(length=6, allowed_chars='0123456789')
+            otp_storage[email] = otp
+            send_mail(
+                'Password Reset OTP',
+                f'Your OTP for password reset is: {otp}',
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+                fail_silently=False,
+            )
+            messages.success(request, 'OTP has been sent to your email.')
+            return redirect('password_reset_verify', email=email)
+        else:
+            messages.error(request, 'Email not found.')
+    return render(request, 'password_reset_request.html')
+
+def password_reset_verify(request, email):
+    if request.method == 'POST':
+        otp = request.POST.get('otp')
+        if otp_storage.get(email) == otp:
+            del otp_storage[email]
+            return redirect('password_reset_new', email=email)
+        else:
+            messages.error(request, 'Invalid OTP.')
+    return render(request, 'password_reset_verify.html', {'email': email})
+
+def password_reset_new(request, email):
+    if request.method == 'POST':
+        password = request.POST.get('password')
+        user = User.objects.get(email=email)
+        user.set_password(password)
+        user.save()
+        messages.success(request, 'Password has been reset successfully.')
+        return redirect('login')
+    return render(request, 'password_reset_new.html', {'email': email})
 
 
