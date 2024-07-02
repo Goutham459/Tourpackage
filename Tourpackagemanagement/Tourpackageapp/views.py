@@ -24,6 +24,9 @@ def home(request):
     packagers = Packager.objects.all()
     return render(request, 'home.html',{'packagers':packagers})
 
+def about(request):
+    return render (request,'about.html')
+
 def bus(request):
     buses = Bus.objects.all()
     return render(request,'buses.html', {'buses': buses})
@@ -59,9 +62,9 @@ def enquiry(request):
         )
 
         return HttpResponse('Enquiry submitted successfully. Thank you!')
-    
+
     return render(request, 'enquiry.html')
-        
+
 
 
 def login(request):
@@ -111,7 +114,7 @@ def signup(request):
         return redirect('login')
 
     return render(request, 'signup.html')
-    
+
 @login_required
 def signout(request):
     logout(request)

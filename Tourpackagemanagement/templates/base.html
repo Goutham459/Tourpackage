@@ -94,7 +94,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
-                        <a class="nav-link" href="#footer">About</a>
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                         {% if user.is_authenticated %}
                         <a class="nav-link" href="{% url 'packagers' %}">Packages</a>
                         <a class="nav-link" href="{% url 'bus' %}">Buses</a>

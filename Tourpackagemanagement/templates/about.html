@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}About ExploreMate{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Oxanium', sans-serif;
+        line-height: 1.6;
+        background-color: #1A1A1D;
+        color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .about-content {
+        text-align: left;
+    }
+
+    .about-content h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: yellowgreen;
+    }
+
+    .mission-statement {
+        font-size: 1.2em;
+        color: #CCCCCC;
+    }
+    .services, .why-choose-us, .contact-info, .testimonials {
+        margin-top: 40px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+
+    }
+
+    .services h3, .why-choose-us h3, .contact-info h3, .testimonials h3 {
+        font-size: 1.8em;
+        color: yellowgreen;
+    }
+
+    .services ul, .why-choose-us ul {
+        list-style-type: none; /* Remove default list style */
+        padding-left: 0;
+        color: #CCCCCC;
+    }
+
+    .services ul li,
+    .why-choose-us ul li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 10px;
+    }
+
+    .services ul li::before,
+    .why-choose-us ul li::before {
+        content: "\25BA"; /* Unicode character for right-pointing arrow */
+        position: absolute;
+        left: 0;
+        color: yellowgreen;
+    }
+
+    .contact-info p {
+        font-size: 1.2em;
+        color: #CCCCCC;
+    }
+
+</style>
+
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="about-content text-center text-md-left">
+            <h2>ExploreMate: Your Partner in College and School Tours</h2>
+            <p class="mission-statement">Our mission is to simplify the process of planning college and school tours by providing comprehensive solutions tailored to your needs. Whether you're organizing a cultural trip, educational visit, or recreational outing, ExploreMate is here to ensure every detail is meticulously planned.</p>
+
+            <div class="services mt-4">
+                <h3>Services Offered</h3>
+                <ul>
+                    <li>Destination Selection</li>
+                    <li>Bus Services</li>
+                    <li>Customizable Packages</li>
+                    <li>Enquiry and Booking</li>
+                </ul>
+            </div>
+
+            <div class="why-choose-us mt-4">
+                <h3>Why Choose Us</h3>
+                <ul>
+                    <li>Expertise</li>
+                    <li>Customization</li>
+                    <li>Support</li>
+                </ul>
+            </div>
+
+            <div class="contact-info mt-4">
+                <h3>Contact Information</h3>
+                <p>Phone: 9957822010</p>
+                <p>Email: exploremate01@gmail.com</p>
+            </div>
+
+            <div class="cta mt-4">
+                <p>Ready to plan your next school tour with ExploreMate? <a href="{% url 'enquiry' %}">Contact us</a> to get started!</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

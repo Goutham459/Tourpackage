@@ -23,7 +23,8 @@ from Tourpackagemanagement import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name="home"),
-    path('packagers/', views.packagers, name='packagers'), 
+    path('about/',views.about,name='about'),
+    path('packagers/', views.packagers, name='packagers'),
     path('packages/<str:name>/', views.packages, name="packages"),
     path('packagedetails/<int:pk>/', views.packagedetails, name='packagedetails'),
     path('bus/',views.bus,name='bus'),
@@ -34,7 +35,7 @@ urlpatterns = [
      path('password_reset/', views.password_reset_request, name='password_reset_request'),
     path('password_reset_verify/<str:email>/', views.password_reset_verify, name='password_reset_verify'),
     path('password_reset_new/<str:email>/', views.password_reset_new, name='password_reset_new'),
-    
+
 ]
 
 if settings.DEBUG:
