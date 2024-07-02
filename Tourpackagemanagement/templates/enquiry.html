@@ -3,33 +3,33 @@
 {% block content %}
 
 <style>
-
-.enquiry-card {
+  .enquiry-card {
     max-width: 400px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #1A1A1D;
-}
+  }
 
-.enquiry-card h3{
-    color:black;
-}
+  .enquiry-card h3 {
+    color: black;
+  }
 
-.form-label {
+  .form-label {
     font-weight: bold;
-}
+  }
 
-.btn-primary {
+  .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
-}
+  }
 
-.btn-primary:hover {
+  .btn-primary:hover {
     background-color: #0056b3;
     border-color: #0056b3;
-}
-      .btn {
+  }
+
+  .btn {
     display: block;
     width: 100%;
     background-color: rgb(0, 0, 0);
@@ -41,6 +41,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
   .btn:hover {
     background-color: yellowgreen;
     color: black;
@@ -48,59 +49,66 @@
 </style>
 
 <div class="container">
-    <div class="row">
-        <div class="enquiry-form">
-            <center>
-                <form method="POST" id="enquiry-form" onsubmit="sendEmail(); return false;">
-                    {% csrf_token %}
-                    <div class="enquiry-card">
-                        <h3 class="mt-4" style="color:white;">ENQUIRE NOW</h3>
-                        <div class="mb-3">
-                            <label class="form-label required-label">Name</label>
-                            <input type="text" class="form-control" name="n" placeholder="Enter your Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label required-label">City of Residence</label>
-                            <input type="text" class="form-control" name="p" placeholder="Enter your City" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label required-label">E-mail</label>
-                            <input type="email" class="form-control" name="e" placeholder="Enter your Email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label required-label">Date of Travel</label>
-                            <input type="date" class="form-control" name="d" placeholder="date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contactNumber" class="form-label required-label">Contact Number</label>
-                            <input type="text" id="contactNumber" class="form-control" name="c" placeholder="number" required pattern="\d{10}" title="Please enter a 10-digit phone number">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <button type="submit" class="btn" style="margin-bottom: 25px;">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </center>
-        </div>
+  <div class="row">
+    <div class="enquiry-form">
+      <center>
+        <form method="POST" id="enquiry-form" onsubmit="sendEmail(); return false;">
+          {% csrf_token %}
+          <div class="enquiry-card">
+            <h3 class="mt-4" style="color:white;">ENQUIRE NOW</h3>
+            <div class="mb-3">
+              <label class="form-label required-label">Name</label>
+              <input type="text" class="form-control" name="n" placeholder="Enter your Name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label required-label">City of Residence</label>
+              <input type="text" class="form-control" name="p" placeholder="Enter your City" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label required-label">E-mail</label>
+              <input type="email" class="form-control" name="e" id="e" placeholder="Enter your Email" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label required-label">Date of Travel</label>
+              <input type="date" class="form-control" name="d" placeholder="date" required>
+            </div>
+            <div class="mb-3">
+              <label for="contactNumber" class="form-label required-label">Contact Number</label>
+              <input type="text" id="contactNumber" class="form-control" name="c" placeholder="number" required pattern="\d{10}" title="Please enter a 10-digit phone number">
+            </div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn" style="margin-bottom: 25px;">Submit</button>
+            </div>
+          </div>
+        </form>
+      </center>
     </div>
+  </div>
 </div>
+
 <script src="https://smtpjs.com/v3/smtp.js"></script>
 <script>
-    function sendEmail() {
-        Email.send({
-            Host: "smtp.gmail.com",
-            Username: "your_email@gmail.com",
-            Password: "your_generated_app_password",
-            To: 'gouthamkrishancs1@gmail.com',
-            From: document.getElementById("e").value,
-            Subject: "New Enquiry",
-            Body: "This is the body of your email."
-        }).then(
-            message => alert(message)
-        );
-    }
+  function sendEmail() {
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username: "your_email@gmail.com",
+      Password: "your_generated_app_password",
+      To: 'gouthamkrishancs1@gmail.com',
+      From: document.getElementById("e").value,
+      Subject: "New Enquiry",
+      Body: "Name: " + document.getElementsByName("n")[0].value + "<br>" +
+        "City: " + document.getElementsByName("p")[0].value + "<br>" +
+        "Email: " + document.getElementsByName("e")[0].value + "<br>" +
+        "Date of Travel: " + document.getElementsByName("d")[0].value + "<br>" +
+        "Contact Number: " + document.getElementsByName("c")[0].value
+    }).then(
+      message => {
+        alert("Your enquiry has been submitted successfully!");
+        document.getElementById("enquiry-form").reset();
+      }
+    );
+  }
 </script>
-
 
 {% endblock %}
