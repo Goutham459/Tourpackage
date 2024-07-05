@@ -39,10 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'Tourpackageapp',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 
 
@@ -55,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 
@@ -66,22 +61,8 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
 
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        'APP': {
-            'client_id': '',
-            'secret': '',
-        }
-    }
-}
 
 ROOT_URLCONF = 'Tourpackagemanagement.urls'
 

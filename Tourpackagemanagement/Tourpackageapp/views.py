@@ -14,8 +14,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.utils.crypto import get_random_string
-from google.oauth2 import id_token
-from google.auth.transport import requests
 
 
 
@@ -161,29 +159,6 @@ def password_reset_new(request, email):
         return redirect('login')
     return render(request, 'password_reset_new.html', {'email': email})
 
-def google_login(request):
-    if request.method == 'POST':
-        token = json.loads(request.body).get('token')
-        try:
-            idinfo = id_token.verify_oauth2_token(token, requests.Request(), settings.GOOGLE_CLIENT_ID)
-            if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-                raise ValueError('Wrong issuer.')
 
-            user, created = User.objects.get_or_create(
-                username=idinfo['sub'],
-                defaults={
-                    'first_name': idinfo['given_name'],
-                    'last_name': idinfo['family_name'],
-                    'email': idinfo['email'],
-                }
-            )
-
-            login(request, user)
-            return JsonResponse({'status': 'ok'}, status=200)
-
-        except ValueError:
-            return JsonResponse({'status': 'error'}, status=400)
-
-    return JsonResponse({'status': 'bad request'}, status=400)
 
 

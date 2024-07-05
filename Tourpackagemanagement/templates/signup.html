@@ -25,13 +25,13 @@
   .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
-  }
+}
 
-  .btn-primary:hover {
+.btn-primary:hover {
     background-color: #0056b3;
     border-color: #0056b3;
-  }
-  .btn {
+}
+      .btn {
     display: block;
     width: 70%;
     background-color: rgb(0, 0, 0);
@@ -46,9 +46,6 @@
   .btn:hover {
     background-color: yellowgreen;
     color: black;
-  }
-  .g-signin2 {
-    margin-top: 20px;
   }
 </style>
 
@@ -92,6 +89,7 @@
         </div>
       </div>
 
+
       <div class="mb-3">
         <input class="form-check-input me-2" type="checkbox" name="agree" required>
         <label class="form-check-label">
@@ -103,32 +101,10 @@
         <a href="{% url 'login' %}">Login</a>
       </div>
 
+
       <input type="submit" class="btn" style="margin-bottom: 25px;" value="Sign up">
     </form>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </div>
 </center>
-
-<script>
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token;
-
-    // Send the ID token to your server with AJAX
-    fetch('/path/to/your/backend/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': '{{ csrf_token }}'
-      },
-      body: JSON.stringify({
-        token: id_token
-      })
-    }).then(response => response.json()).then(data => {
-      console.log(data);
-      // Redirect or update the UI based on server response
-    });
-  }
-</script>
 
 {% endblock %}
