@@ -32,9 +32,11 @@ urlpatterns = [
     path('login/',views.login,name="login"),
     path('logout/', views.signout, name='logout'),
     path('enquiry/',views.enquiry,name="enquiry"),
-     path('password_reset/', views.password_reset_request, name='password_reset_request'),
+    path('password_reset/', views.password_reset_request, name='password_reset_request'),
     path('password_reset_verify/<str:email>/', views.password_reset_verify, name='password_reset_verify'),
     path('password_reset_new/<str:email>/', views.password_reset_new, name='password_reset_new'),
+    path('google-login/', views.google_login, name='google_login'),
+
 
 ]
 

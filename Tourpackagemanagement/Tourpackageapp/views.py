@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.utils.crypto import get_random_string
+from google.oauth2 import id_token
+from google.auth.transport import requests
 
 
 
@@ -88,14 +90,12 @@ def signup(request):
         n = request.POST.get('n')
         e = request.POST.get('e')
         u = request.POST.get('u')
-        p = request.POST.get('p')  # Corrected name attribute to match the form
+        p = request.POST.get('p')
 
-        # Basic validation
         if not all([n, e, u, p]):
             messages.error(request, 'All fields are required.')
             return redirect('signup')
 
-        # Check if username or email already exists
         if User.objects.filter(username=u).exists() and User.objects.filter(email=e).exists():
             messages.error(request, 'Username and Email are already taken.')
             return redirect('signup')
@@ -108,7 +108,6 @@ def signup(request):
             messages.error(request, 'Email is already registered.')
             return redirect('signup')
 
-        # Create the user
         user = User.objects.create_user(username=u, email=e, password=p, first_name=n)
         messages.success(request, 'Account created successfully. You can now login.')
         return redirect('login')
@@ -162,5 +161,29 @@ def password_reset_new(request, email):
         return redirect('login')
     return render(request, 'password_reset_new.html', {'email': email})
 
+def google_login(request):
+    if request.method == 'POST':
+        token = json.loads(request.body).get('token')
+        try:
+            idinfo = id_token.verify_oauth2_token(token, requests.Request(), settings.GOOGLE_CLIENT_ID)
+            if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+                raise ValueError('Wrong issuer.')
+
+            user, created = User.objects.get_or_create(
+                username=idinfo['sub'],
+                defaults={
+                    'first_name': idinfo['given_name'],
+                    'last_name': idinfo['family_name'],
+                    'email': idinfo['email'],
+                }
+            )
+
+            login(request, user)
+            return JsonResponse({'status': 'ok'}, status=200)
+
+        except ValueError:
+            return JsonResponse({'status': 'error'}, status=400)
+
+    return JsonResponse({'status': 'bad request'}, status=400)
 
 
