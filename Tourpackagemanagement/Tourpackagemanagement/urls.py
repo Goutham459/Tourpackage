@@ -35,6 +35,7 @@ urlpatterns = [
     path('password_reset/', views.password_reset_request, name='password_reset_request'),
     path('password_reset_verify/<str:email>/', views.password_reset_verify, name='password_reset_verify'),
     path('password_reset_new/<str:email>/', views.password_reset_new, name='password_reset_new'),
+     path('terms/', views.terms, name='terms'),
 
 
 ]

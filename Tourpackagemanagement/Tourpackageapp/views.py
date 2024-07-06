@@ -160,5 +160,7 @@ def password_reset_new(request, email):
     return render(request, 'password_reset_new.html', {'email': email})
 
 
+def terms(request):
+    return render(request, 'terms.html')
 
 
