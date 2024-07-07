@@ -89,6 +89,23 @@
         .nav-item a:hover {
             color: yellowgreen !important;
         }
+        .whatsapp-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-chat img {
+            width: 40px;
+            height: 40px;
+        }
 
     </style>
 
@@ -155,5 +172,10 @@
         </footer>
     </div>
 </div>
+
+<!--WhatsApp chat-->
+
+<a href="https://wa.me/<add mobile number>" class="whatsapp-chat" target="_blank">
+    <img src="{% static 'images/whatsapp.png' %}" alt="Chat with us on WhatsApp">
 </body>
 </html>
