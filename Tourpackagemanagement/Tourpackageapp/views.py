@@ -17,7 +17,6 @@ from django.utils.crypto import get_random_string
 
 
 
-
 # Create your views here.
 
 def home(request):
@@ -52,12 +51,11 @@ def enquiry(request):
         date_of_travel = request.POST.get('d')
         contact_number = request.POST.get('c')
 
-        # Example email sending logic using Django's send_mail
         send_mail(
             'New Enquiry',
             f'Name: {name}\nCity: {city}\nEmail: {email}\nDate of Travel: {date_of_travel}\nContact Number: {contact_number}',
-            settings.DEFAULT_FROM_EMAIL,  # Use your default sender email here
-            ['gouthamkrishancs1@gmail.com'],  # List of recipient(s)
+            settings.DEFAULT_FROM_EMAIL,
+            ['gouthamkrishancs1@gmail.com'], 
             fail_silently=False,
         )
 
