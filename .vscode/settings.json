@@ -1,4 +1,7 @@
 {
   "editor.accessibilityPageSize": 9,
-  "editor.fontSize": 12
+  "editor.fontSize": 12,
+  "python.testing.pytestArgs": ["."],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }
