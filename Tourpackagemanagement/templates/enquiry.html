@@ -20,16 +20,6 @@
     font-weight: bold;
   }
 
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-
   .btn {
     display: block;
     width: 100%;
@@ -38,7 +28,6 @@
     border: none;
     padding: 10px 0;
     text-align: center;
-    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -53,7 +42,7 @@
   <div class="row">
     <div class="enquiry-form">
       <center>
-        <form method="POST" id="enquiry-form" onsubmit="sendEmail(); return false;">
+        <form method="POST" id="enquiry-form">
           {% csrf_token %}
           <div class="enquiry-card">
             <h3 class="mt-4" style="color:white;">ENQUIRE NOW</h3>
@@ -69,16 +58,15 @@
               <label class="form-label required-label">E-mail</label>
               <input type="email" class="form-control" name="e" id="e" placeholder="Enter your Email" 
               value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" required>
-                   </div>
+            </div>
             <div class="mb-3">
               <label class="form-label required-label">Date of Travel</label>
-              <input type="date" class="form-control" name="d" placeholder="date" required>
+              <input type="date" class="form-control" name="d" required>
             </div>
             <div class="mb-3">
               <label for="contactNumber" class="form-label required-label">Contact Number</label>
               <input type="text" id="contactNumber" class="form-control" name="c" placeholder="number" required pattern="\d{10}" title="Please enter a 10-digit phone number">
             </div>
-
             <div class="mb-3">
               <button type="submit" class="btn" style="margin-bottom: 25px;">Submit</button>
             </div>
@@ -89,29 +77,37 @@
   </div>
 </div>
 
-<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  function sendEmail() {
-    Email.send({
-      Host: "smtp.gmail.com",
-      Username: document.getElementById("e").value, // Use user's email
-      Password: "edrr vuva cbff qbkq", 
-      To: 'gouthamkrishancs1@gmail.com', // Change this to your email
-      From: document.getElementById("e").value,
-      Subject: "New Enquiry",
-      Body: "Name: " + document.getElementsByName("n")[0].value + "<br>" +
-        "City: " + document.getElementsByName("p")[0].value + "<br>" +
-        "Email: " + document.getElementsByName("e")[0].value + "<br>" +
-        "Date of Travel: " + document.getElementsByName("d")[0].value + "<br>" +
-        "Contact Number: " + document.getElementsByName("c")[0].value
-    }).then(
-      message => {
-        alert("Your enquiry has been submitted successfully!");
-        document.getElementById("enquiry-form").reset();
-      }
-    );
-  }
+  $(document).ready(function() {
+    $('#enquiry-form').on('submit', function(event) {
+      event.preventDefault(); 
+      $.ajax({
+        type: 'POST',
+        url: '{% url "enquiry" %}',  
+        data: $(this).serialize(), 
+        success: function(response) {
+          swal({
+            title: "Success!",
+            text: response.message,
+            icon: "success",
+            button: "Okay",
+          });
+          $('#enquiry-form')[0].reset(); 
+        },
+        error: function(xhr) {
+          // Handle error case 
+          swal({
+            title: "Error!",
+            text: "There was a problem submitting your enquiry.",
+            icon: "error",
+            button: "Okay",
+          });
+        }
+      });
+    });
+  });
 </script>
-
 
 {% endblock %}

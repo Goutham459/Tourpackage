@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.utils.crypto import get_random_string
+from django.http import JsonResponse
+
 
 
 
@@ -47,22 +49,25 @@ def packagedetails(request, pk):
 @login_required
 def enquiry(request):
     if request.method == 'POST':
-        name = request.POST.get('n')
-        city = request.POST.get('p')
-        email = request.POST.get('e')
-        date_of_travel = request.POST.get('d')
-        contact_number = request.POST.get('c')
+        try:
+            name = request.POST.get('n')
+            city = request.POST.get('p')
+            email = request.POST.get('e')
+            date_of_travel = request.POST.get('d')
+            contact_number = request.POST.get('c')
 
-        # Sending the email
-        send_mail(
-            'New Enquiry',
-            f'Name: {name}\nCity: {city}\nEmail: {email}\nDate of Travel: {date_of_travel}\nContact Number: {contact_number}',
-            settings.DEFAULT_FROM_EMAIL,
-            ['gouthamkrishna1@gmail.com'], 
-            fail_silently=False,
-        )
+            # Sending the email
+            send_mail(
+                'New Enquiry',
+                f'Name: {name}\nCity: {city}\nEmail: {email}\nDate of Travel: {date_of_travel}\nContact Number: {contact_number}',
+                settings.EMAIL_HOST_USER,
+                ['gouthamkrishnacs1@gmail.com'], 
+                fail_silently=False,
+            )
 
-        return HttpResponse('Enquiry submitted successfully. Thank you!')
+            return JsonResponse({'message': 'Your enquiry has been submitted successfully!'})
+        except Exception as e:
+            return JsonResponse({'message': 'There was a problem submitting your enquiry. Please try again.'}, status=500)
 
     return render(request, 'enquiry.html')
 
