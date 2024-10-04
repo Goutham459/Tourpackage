@@ -2,7 +2,23 @@
 {% load static %}
 {% block content %}
 <style>
+.btn {
+    display: block;
+    width: 20%;
+    background-color: rgb(0, 0, 0);
+    color: yellowgreen;
+    border: none;
+    margin-left: 20px;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.btn:hover {
+    background-color: yellowgreen;
+    color: black;
+}
 </style>
 
 
@@ -32,12 +48,14 @@
 </div>
 
     <div>
-        <p class="text-danger" style="margin-top:50px; line-height:2;">
+        <p class="text-danger" style="margin-top:50px; margin-left: 20px; line-height:2;">
                 Full Package with Food and Accomadation<br>
                 Price May vary based on package customisations</p>
     </div>
     {% if user.is_authenticated %}
-    <a style="margin-top:30px;" href="" class="btn btn-secondary" >Download package</a>
+    <a style="margin-top:30px;" href="" class="btn btn-secondary" >Download package</a>   
+    <a style="margin-top:30px;" href="" class="btn" >Book Now</a>
+
     {% else %}
     {% endif %}
 
