@@ -43,6 +43,8 @@ def packagedetails(request, pk):
     package = get_object_or_404(Package, pk=pk)
     return render(request, 'packagedetails.html', {'package': package})
 
+
+@login_required
 def enquiry(request):
     if request.method == 'POST':
         name = request.POST.get('n')
@@ -51,18 +53,18 @@ def enquiry(request):
         date_of_travel = request.POST.get('d')
         contact_number = request.POST.get('c')
 
+        # Sending the email
         send_mail(
             'New Enquiry',
             f'Name: {name}\nCity: {city}\nEmail: {email}\nDate of Travel: {date_of_travel}\nContact Number: {contact_number}',
             settings.DEFAULT_FROM_EMAIL,
-            ['gouthamkrishancs1@gmail.com'], 
+            ['gouthamkrishna1@gmail.com'], 
             fail_silently=False,
         )
 
         return HttpResponse('Enquiry submitted successfully. Thank you!')
 
     return render(request, 'enquiry.html')
-
 
 
 def login(request):

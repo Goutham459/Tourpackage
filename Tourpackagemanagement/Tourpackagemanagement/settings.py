@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    'django.contrib.sites',  
+    'allauth',               
+    'allauth.account',       
+    'allauth.socialaccount', 
     'Tourpackageapp',
 ]
+
 
 
 
@@ -49,9 +53,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware', 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 
 
@@ -62,6 +68,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+SITE_ID = 1
 
 
 ROOT_URLCONF = 'Tourpackagemanagement.urls'
@@ -152,5 +159,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'gouthamkrishnacs1@gmail.com'
-EMAIL_HOST_PASSWORD = 'wjsh yqho fmwp pecc'
+EMAIL_HOST_PASSWORD = 'edrr vuva cbff qbkq'
 DEFAULT_FROM_EMAIL = 'ExploreMate <noreply@exploremate.com>'

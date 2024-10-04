@@ -67,8 +67,9 @@
             </div>
             <div class="mb-3">
               <label class="form-label required-label">E-mail</label>
-              <input type="email" class="form-control" name="e" id="e" placeholder="Enter your Email" required>
-            </div>
+              <input type="email" class="form-control" name="e" id="e" placeholder="Enter your Email" 
+              value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" required>
+                   </div>
             <div class="mb-3">
               <label class="form-label required-label">Date of Travel</label>
               <input type="date" class="form-control" name="d" placeholder="date" required>
@@ -93,9 +94,9 @@
   function sendEmail() {
     Email.send({
       Host: "smtp.gmail.com",
-      Username: "your_email@gmail.com",
-      Password: "your_generated_app_password",
-      To: 'gouthamkrishancs1@gmail.com',
+      Username: document.getElementById("e").value, // Use user's email
+      Password: "edrr vuva cbff qbkq", 
+      To: 'gouthamkrishancs1@gmail.com', // Change this to your email
       From: document.getElementById("e").value,
       Subject: "New Enquiry",
       Body: "Name: " + document.getElementsByName("n")[0].value + "<br>" +
@@ -111,5 +112,6 @@
     );
   }
 </script>
+
 
 {% endblock %}
