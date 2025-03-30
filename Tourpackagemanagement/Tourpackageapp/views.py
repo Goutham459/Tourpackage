@@ -15,6 +15,8 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.utils.crypto import get_random_string
 from django.http import JsonResponse
+from django.middleware.csrf import get_token
+from django.shortcuts import render
 
 
 

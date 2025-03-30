@@ -14,7 +14,7 @@ class Bus(models.Model):
     desc = models.TextField()
     image1 = models.ImageField(upload_to="images/bus", null=True, blank=True)
     image2 = models.ImageField(upload_to="images/bus", null=True, blank=True)
-    location = models.CharField(max_length=20,null=True, blank=True)
+    location = models.CharField(max_length=50,null=True, blank=True)
     contact = models.CharField(max_length=20,null=True, blank=True)
     def __str__(self):
         return self.name
